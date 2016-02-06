@@ -39,7 +39,7 @@
   [suit value])
 
 (defn card-suit [[suit _]]
-  suit)
+   suit)
 
 (defn card-value [[_ value]]
   value)
@@ -73,5 +73,3 @@
 (defn card-color [card]
   (suit-color (card-suit card)))
 
-
-(card/numeric-value [:spades :K])
