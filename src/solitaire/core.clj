@@ -14,3 +14,19 @@
 
 ;; move
 ;; (fn [game] ... new-game)
+
+(defn move-fn
+  [count from to transform]
+  (fn [game]
+    (let [cards (take count (get-in game from))]
+      (-> game
+        (update-in from (partial drop count))
+        (update-in to into (transform cards))))))
+
+(defn transfer-fn
+  [count from to]
+  (move-fn count from to reverse))
+
+(defn flip-fn
+  [count from to]
+  (move-fn count from to identity))
