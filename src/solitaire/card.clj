@@ -43,3 +43,6 @@
 (defn color [card]
   (suit-color (suit card)))
 
+(def deck (for [suit suits
+                value values]
+            (make suit value)))

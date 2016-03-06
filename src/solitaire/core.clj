@@ -15,6 +15,29 @@
 ;; move
 ;; (fn [game] ... new-game)
 
+(def empty-stack {:up () :down ()})
+
+(def empty-game
+  {:foundations (vec (repeat 4 empty-stack))
+   :stock       (vec (repeat 1 empty-stack))
+   :tableau     (vec (repeat 7 empty-stack))})
+
+(defn split-deck [n deck]
+  [(take n deck) (drop n deck)])
+
+(defn deal-game []
+  (let [deck (shuffle card/deck)
+        game empty-game
+        [game deck] (reduce (fn [[game deck] t]
+                              (let [[up   deck] (split-deck 1 deck)
+                                    [down deck] (split-deck t deck)]
+                                [(-> game
+                                   (assoc-in [:tableau t :up]   up)
+                                   (assoc-in [:tableau t :down] down))
+                                 deck]))
+                      [game deck] (range 7))]
+    (assoc-in game [:stock 0 :down] deck)))
+
 (defn move [game count from to transform]
   (let [cards (take count (get-in game from))]
     (-> game

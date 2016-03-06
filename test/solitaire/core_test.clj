@@ -72,3 +72,24 @@
                                 (card/make :spades :A))}]}
         move [:move/flip 1 [:tableau 0]]]
     (is (= game2 (apply-move game move)))))
+
+(deftest deal-game-test
+  (let [game (deal-game)]
+    (is (= (repeat 4 {:up () :down ()})
+          (:foundations game)))
+
+    (is (= () (get-in game [:stock 0 :up])))
+    (is (not (empty? (get-in game [:stock 0 :down]))))
+
+    (dotimes [t 7]
+      (let [tableau (get-in game [:tableau t])]
+        (is (= 1 (count (:up   tableau))))
+        (is (= t (count (:down tableau))))))
+
+    (let [cards (for [area [:tableau :foundations :stock]
+                      stack (get game area)
+                      face [:up :down]
+                      card (get stack face)]
+                  card)]
+      (is (= 52 (count cards)))
+      (is (= 52 (count (set cards)))))))
