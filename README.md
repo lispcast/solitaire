@@ -18,7 +18,7 @@ git checkout {TAG_NAME}
 This code was used in the *Solitaire* series of lessons in the
 [*PurelyFunctional.tv Online Mentoring*][ment] program.
 
-[ment]: http://www.purelyfunctional.tv/mentoring
+[ment]: https://purelyfunctional.tv/
 
 ## License
 
