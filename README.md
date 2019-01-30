@@ -1,24 +1,29 @@
 # solitaire
 
-An exploration of domain modeling in Clojure. We use the domain of
-Solitaire, the single-player card game.
+An exploration of domain modeling in Clojure. We use the
+domain of Solitaire, the single-player card game.
 
-You may navigate around using tags. For a list of tags, execute
+You may navigate around using branches.
 
-```
-git tag
-```
+To list branches:
 
-To checkout a tag, execute
-
-```
-git checkout {TAG_NAME}
+```bash
+$CMD git branch
 ```
 
-This code was used in the *Solitaire* series of lessons in the
-[*PurelyFunctional.tv Online Mentoring*][ment] program.
+To checkout a branch, execute
 
-[ment]: http://www.purelyfunctional.tv/mentoring
+```bash
+$CMD git checkout -f {BRANCH_NAME}
+```
+
+The `master` branch contains the final code.
+
+This code was used in the [*Data Modeling in
+Clojure*](https://purelyfunctional.tv/courses/modeling-solitaire-in-clojure/)
+course at [PurelyFunctional.tv][ment].
+
+[ment]: https://purelyfunctional.tv/
 
 ## License
 
